@@ -1,5 +1,5 @@
 # eclipse_j2ee_python_go
-Extends by docker build of __Eclipse for Java 2 EE Developers__ accessible via [xpra](https://xpra.org/) to include python and golang.
+Extends my docker build of __Eclipse for Java 2 EE Developers__ accessible via [xpra](https://xpra.org/) to include python and golang.
 
 ## Features
 * The build checks the sha512 signature of the eclipse download to ensure the download mirror hasn't been compromised.
