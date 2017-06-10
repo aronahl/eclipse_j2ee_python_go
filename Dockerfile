@@ -1,6 +1,6 @@
 FROM aronahl/eclipse_j2ee
 USER root
-ADD com.googlecode.goclipse.core.prefs /opt/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/
+ADD com.googlecode.goclipse.core.prefs org.python.pydev.prefs /opt/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/
 RUN apt-get update && \
     apt-get dist-upgrade -fy && \
     apt-get install -fy python3 python3-minimal curl git && \
