@@ -14,3 +14,7 @@ RUN apt-get update && \
 USER user
 RUN /opt/eclipse/eclipse -nosplash -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/neon/,http://pydev.org/updates/ -installIU org.python.pydev.feature.feature.group
 RUN /opt/eclipse/eclipse -nosplash -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/neon/,http://goclipse.github.io/releases/ -installIU goclipse_feature.feature.group
+ENV GOPATH=/opt/go
+RUN /usr/local/go/bin/go get -u github.com/nsf/gocode && \
+    /usr/local/go/bin/go get -u golang.org/x/tools/cmd/guru && \
+    /usr/local/go/bin/go get -u github.com/rogpeppe/godef
