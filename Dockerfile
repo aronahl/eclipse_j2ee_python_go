@@ -12,9 +12,9 @@ RUN apt-get update && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* 
 USER user
-RUN /opt/eclipse/eclipse -nosplash -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/neon/,http://pydev.org/updates/ -installIU org.python.pydev.feature.feature.group
-RUN /opt/eclipse/eclipse -nosplash -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/neon/,http://goclipse.github.io/releases/ -installIU goclipse_feature.feature.group
-RUN /opt/eclipse/eclipse -nosplash -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/neon/ -installIU org.eclipse.linuxtools.docker.feature.feature.group
+RUN /opt/eclipse/eclipse -nosplash -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/neon/,http://pydev.org/updates/ -installIU org.python.pydev.feature.feature.group -profileProperties org.eclipse.update.install.features=true
+RUN /opt/eclipse/eclipse -nosplash -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/neon/,http://goclipse.github.io/releases/ -installIU goclipse_feature.feature.group -profileProperties org.eclipse.update.install.features=true
+RUN /opt/eclipse/eclipse -nosplash -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/neon/ -installIU org.eclipse.linuxtools.docker.feature.feature.group -profileProperties org.eclipse.update.install.features=true
 ENV GOPATH=/opt/go
 RUN /usr/local/go/bin/go get -u github.com/nsf/gocode && \
     /usr/local/go/bin/go get -u golang.org/x/tools/cmd/guru && \
