@@ -1,0 +1,20 @@
+FROM aronahl/eclipse_j2ee_python_go
+RUN /opt/eclipse/eclipse -nosplash -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/neon/,http://vrapper.sourceforge.net/update-site/stable -installIU net.sourceforge.vrapper.eclipse.cdt.feature.feature.group,net.sourceforge.vrapper.eclipse.jdt.feature.feature.group,net.sourceforge.vrapper.eclipse.pydev.feature.feature.group,net.sourceforge.vrapper.feature.group,net.sourceforge.vrapper.plugin.argtextobj.feature.group,net.sourceforge.vrapper.plugin.clangformat.feature.group,net.sourceforge.vrapper.plugin.cycle.feature.group,net.sourceforge.vrapper.plugin.exchange.feature.group,net.sourceforge.vrapper.plugin.indenttextobj.feature.group,net.sourceforge.vrapper.plugin.ipmotion.feature.group,net.sourceforge.vrapper.plugin.linetextobj.feature.group,net.sourceforge.vrapper.plugin.methodtextobj.feature.group,net.sourceforge.vrapper.plugin.sneak.feature.group,net.sourceforge.vrapper.plugin.splitEditor.feature.group,net.sourceforge.vrapper.plugin.subwordtextobj.feature.group,net.sourceforge.vrapper.plugin.surround.feature.group -profileProperties org.eclipse.update.install.features=true
+ADD .vrapperrc /home/user/
+USER root
+RUN chown user /home/user/.vrapperrc
+WORKDIR /tmp
+RUN apt-get update && apt-get install wget && \
+    wget 'http://www.namesdir.com/mirrors/apache/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz' && wget 'https://www.apache.org/dist/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz.md5' && \
+    printf ' apache-maven-3.5.0-bin.tar.gz\n' >> apache-maven-3.5.0-bin.tar.gz.md5 && md5sum -c apache-maven-3.5.0-bin.tar.gz.md5 && \
+    tar -xzvf apache-maven-3.5.0-bin.tar.gz && \
+    mv apache-maven-3.5.0 /opt/ &&  \
+    ln -s /opt/apache-maven-3.5.0 /opt/maven && \
+    ln -s /opt/maven/bin/mvn /usr/local/bin && \
+    rm -f apache-maven-3.5.0-bin.tar.gz apache-maven-3.5.0-bin.tar.gz.md5 && \
+    apt-get autoclean -y && \
+    apt-get clean -y && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/* 
+USER user
+WORKDIR /home/user
