@@ -4,7 +4,7 @@ ADD com.googlecode.goclipse.core.prefs org.python.pydev.prefs /opt/workspace/.me
 RUN apt-get update && \
     apt-get dist-upgrade -fy && \
     apt-get install -fy python3 python3-minimal curl git && \
-    curl -s https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz | tar -C /usr/local -xzv && \
+    curl -s https://storage.googleapis.com/golang/go1.8.4.linux-amd64.tar.gz | tar -C /usr/local -xzv && \
     mkdir /opt/go && chown user /opt/go && \
     chown -R user /opt/workspace && \
     apt-get autoclean -y && \
