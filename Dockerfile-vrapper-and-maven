@@ -5,13 +5,13 @@ USER root
 RUN chown user /home/user/.vrapperrc
 WORKDIR /tmp
 RUN apt-get update && apt-get install wget && \
-    wget 'http://www.namesdir.com/mirrors/apache/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz' && wget 'https://www.apache.org/dist/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz.md5' && \
-    printf ' apache-maven-3.5.0-bin.tar.gz\n' >> apache-maven-3.5.0-bin.tar.gz.md5 && md5sum -c apache-maven-3.5.0-bin.tar.gz.md5 && \
-    tar -xzvf apache-maven-3.5.0-bin.tar.gz && \
-    mv apache-maven-3.5.0 /opt/ &&  \
-    ln -s /opt/apache-maven-3.5.0 /opt/maven && \
+    wget 'http://www.namesdir.com/mirrors/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz' && wget 'https://www.apache.org/dist/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz.md5' && \
+    printf ' apache-maven-3.5.2-bin.tar.gz\n' >> apache-maven-3.5.2-bin.tar.gz.md5 && md5sum -c apache-maven-3.5.2-bin.tar.gz.md5 && \
+    tar -xzvf apache-maven-3.5.2-bin.tar.gz && \
+    mv apache-maven-3.5.2 /opt/ &&  \
+    ln -s /opt/apache-maven-3.5.2 /opt/maven && \
     ln -s /opt/maven/bin/mvn /usr/local/bin && \
-    rm -f apache-maven-3.5.0-bin.tar.gz apache-maven-3.5.0-bin.tar.gz.md5 && \
+    rm -f apache-maven-3.5.2-bin.tar.gz apache-maven-3.5.2-bin.tar.gz.md5 && \
     apt-get autoclean -y && \
     apt-get clean -y && \
     apt-get autoremove -y && \
