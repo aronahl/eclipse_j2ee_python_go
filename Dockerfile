@@ -1,9 +1,10 @@
 FROM aronahl/eclipse_j2ee
 USER root
 ADD com.googlecode.goclipse.core.prefs org.python.pydev.prefs /opt/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/
-RUN apt-get update && \
+RUN add-apt-repository ppa:jonathonf/python-3.6 && \
+    apt-get update && \
     apt-get dist-upgrade -fy && \
-    apt-get install -fy python3 python3-minimal curl git && \
+    apt-get install -fy python3 python3-minimal python3.6 curl git && \
     curl -s https://storage.googleapis.com/golang/go1.8.4.linux-amd64.tar.gz | tar -C /usr/local -xzv && \
     mkdir /opt/go && chown user /opt/go && \
     chown -R user /opt/workspace && \
